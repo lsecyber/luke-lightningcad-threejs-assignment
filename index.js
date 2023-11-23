@@ -49,8 +49,8 @@ const renderModel = () => {
   application.add3DShape(...shedModel.shedWall4(width, length, height));
   application.add3DShape(...shedModel.shedRoofPt1(width, length, height));
   application.add3DShape(...shedModel.shedRoofPt2(width, length, height));
-  application.add3DShape(...shedModel.gabel1(width, length, height));
-  application.add3DShape(...shedModel.gabel2(width, length, height));
+  application.add3DShape(...shedModel.gable1(width, length, height));
+  application.add3DShape(...shedModel.gable2(width, length, height));
 };
 
 

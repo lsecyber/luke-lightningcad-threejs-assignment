@@ -142,9 +142,9 @@ describe('ShedModel', () => {
     });
   });
 
-  describe('gabel1', () => {
-    it('should return an array with triangle geometry and color for gabel1', () => {
-      const result = model.gabel1(10, 20, 30);
+  describe('gable1', () => {
+    it('should return an array with triangle geometry and color for gable1', () => {
+      const result = model.gable1(10, 20, 30);
 
       expect(result).toBeDefined();
       expect(result.length).toBe(2);
@@ -153,9 +153,9 @@ describe('ShedModel', () => {
     });
   });
 
-  describe('gabel2', () => {
-    it('should return an array with triangle geometry and color for gabel2', () => {
-      const result = model.gabel2(10, 20, 30);
+  describe('gable2', () => {
+    it('should return an array with triangle geometry and color for gable2', () => {
+      const result = model.gable2(10, 20, 30);
 
       expect(result).toBeDefined();
       expect(result.length).toBe(2);

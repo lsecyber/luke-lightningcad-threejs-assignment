@@ -180,7 +180,7 @@ export default class ShedModel {
    * @param {number} height - The height of the shed.
    * @returns {Array} An array containing geometry and color.
    */
-  gabel1(width, length, height) {
+  gable1(width, length, height) {
     const vertices = new Float32Array([
       //x,  y,   z
       (length / 2), (width / 2), -(height), // Vertex 1
@@ -188,7 +188,7 @@ export default class ShedModel {
       (length / 2), 0.0, -(height + (width / 2)), // Vertex 3
     ]);
     const geometry = ShedModel.#triangle(vertices)
-    return this.__gabel1 ??= [geometry, '#000000']
+    return this.__gable1 ??= [geometry, '#000000']
   }
 
   /**
@@ -198,7 +198,7 @@ export default class ShedModel {
    * @param {number} height - The height of the shed.
    * @returns {Array} An array containing geometry and color.
    */
-  gabel2(width, length, height) {
+  gable2(width, length, height) {
     const vertices = new Float32Array([
       //x,  y,   z
       -(length / 2), (width / 2), -(height), // Vertex 1
@@ -206,6 +206,6 @@ export default class ShedModel {
       -(length / 2), 0.0, -(height + (width / 2)), // Vertex 3
     ]);
     const geometry = ShedModel.#triangle(vertices)
-    return this.__gabel2 ??= [geometry, '#000000']
+    return this.__gable2 ??= [geometry, '#000000']
   }
 }

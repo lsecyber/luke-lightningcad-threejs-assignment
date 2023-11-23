@@ -1,3 +1,14 @@
+/*
+ * Filename: models/Application.js
+ * Description: This file contains the Application class, which is used for much of the handling of the 3D scene,
+ *   including the scene, camera, renderer, lighting, and orbit controls. It is also used for adding or removing shapes
+ *   from the scene. Finally, it is responsible for calling the appropriate callbacks when the width, height, or length
+ *   inputs are changed.
+ * Author: Luke Ertzberger
+ * Date: 11/23/2023
+ * Version: 1.0
+ */
+
 import * as THREE from 'three'
 import { OrbitControls } from 'OrbitControls'
 
@@ -64,7 +75,7 @@ export default class Application {
   }
 
   _defaultAmbientLight() {
-    return new THREE.AmbientLight(0xffffff, 0.3)
+    return new THREE.AmbientLight(0xffffff, 0.5)
   }
 
   enableOrbitControls() {
@@ -100,17 +111,45 @@ export default class Application {
     this.scene().add(shapeMesh)
   }
 
-  add3DShape(geometry, color) {
+  add3DShape(geometry, color, position = [0,0,0], rotateX = 0, rotateY = 0, rotateZ = 0) {
     this.enableLighting()
     this.enableOrbitControls()
 
+    const materialColor = new THREE.Color(color)
+
     const material = new THREE.MeshStandardMaterial({
-      color: color
-    })
+      color: materialColor,
+      metalness: 0.1, // Adjust the metalness to control reflectivity
+      roughness: 0.1, // Adjust the roughness to control the surface roughness
+      side: THREE.DoubleSide, // Set side to DoubleSide for visibility on both sides
+    });
 
     const shapeMesh = new THREE.Mesh(geometry, material)
+    shapeMesh.position.set(...position)
+    shapeMesh.rotateX(rotateX)
+    shapeMesh.rotateY(rotateY)
+    shapeMesh.rotateZ(rotateZ)
+
     this.scene().add(shapeMesh)
   }
+
+  add3DImage(geometry, src, position = [0,0,0], rotateX = 0, rotateY = 0, rotateZ = 0) {
+    this.enableLighting()
+    this.enableOrbitControls()
+
+    const texture = new THREE.TextureLoader().load(src)
+    const material = new THREE.MeshLambertMaterial({map: texture, side: THREE.BackSide})
+
+    const shapeMesh = new THREE.Mesh(geometry, material)
+    shapeMesh.position.set(...position)
+    shapeMesh.rotateX(rotateX)
+    shapeMesh.rotateY(rotateY)
+    shapeMesh.rotateZ(rotateZ)
+
+    this.scene().add(shapeMesh)
+  }
+
+
 
   clear(node = this.scene()) {
     if (node.children && node.children.length > 0) {

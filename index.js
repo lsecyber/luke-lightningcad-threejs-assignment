@@ -27,6 +27,18 @@ let length = 10;
  */
 let height = 10;
 
+/**
+ * Whether the shed has a gable roof.
+ * @type {boolean}
+ */
+let roofIsGable = false;
+
+/**
+ * The wall currently containing the door.
+ * @type {number}
+ */
+let wallWithDoor = 2;
+
 
 /**
  * Renders the 3D model of the shed using the specified dimensions.
@@ -34,23 +46,12 @@ let height = 10;
 const renderModel = () => {
   application.clear();
 
-  const shedModel = new ShedModel();
+  const shedModel = new ShedModel(width, length, height, roofIsGable, wallWithDoor);
+  shedModel.render();
 
   // Adding a 3D image of grass as a background
   application.add3DImage(new THREE.PlaneGeometry(40, 40, 80), '/img/grass.webp');
 
-  // Adding different parts of the shed model
-  application.add3DShape(...shedModel.shedWall1(width, length, height));
-  application.add3DShape(...shedModel.shedWall2LeftPart(width, length, height));
-  application.add3DShape(...shedModel.shedWall2RightPart(width, length, height));
-  application.add3DShape(...shedModel.shedWall2TopPart(width, length, height));
-  application.add3DShape(...shedModel.shedWall2Door(width, length, height));
-  application.add3DShape(...shedModel.shedWall3(width, length, height));
-  application.add3DShape(...shedModel.shedWall4(width, length, height));
-  application.add3DShape(...shedModel.shedRoofPt1(width, length, height));
-  application.add3DShape(...shedModel.shedRoofPt2(width, length, height));
-  application.add3DShape(...shedModel.gable1(width, length, height));
-  application.add3DShape(...shedModel.gable2(width, length, height));
 };
 
 
@@ -62,25 +63,43 @@ renderModel();
  * Updates the width of the shed and re-renders the model.
  * @param {number} newValue - The new width value.
  */
-application.widthChanged = (newValue) => {
+application.setWidthChangedCallback((newValue) => {
   width = newValue;
   renderModel();
-};
+});
 
 /**
  * Updates the length of the shed and re-renders the model.
  * @param {number} newValue - The new length value.
  */
-application.lengthChanged = (newValue) => {
+application.setLengthChangedCallback((newValue) => {
   length = newValue;
   renderModel();
-};
+});
 
 /**
  * Updates the height of the shed and re-renders the model.
  * @param {number} newValue - The new height value.
  */
-application.heightChanged = (newValue) => {
+application.setHeightChangedCallback((newValue) => {
   height = newValue;
   renderModel();
-};
+});
+
+/**
+ * Updates the height of the shed and re-renders the model.
+ * @param {boolean} newValue - The new height value.
+ */
+application.setGableRoofChangedCallback((newValue) => {
+  roofIsGable = newValue;
+  renderModel();
+});
+
+/**
+ * Updates the wall with the door and re-renders the model.
+ * @param {number} newValue - The new wall with the door value.
+ */
+application.setWallWithDoorChangedCallback((newValue) => {
+  wallWithDoor = newValue;
+  renderModel();
+});

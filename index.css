@@ -22,6 +22,21 @@ body {
   gap: 10px;
 }
 
+.button-group {
+  display: flex;
+  justify-content: center;
+}
+
+button {
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+button:disabled {
+  background-color: #414141; /* Change the color to your desired "selected" color */
+  color: #ffffff;
+}
+
 label {
   display: grid;
   grid-template-columns: 1fr 3fr;

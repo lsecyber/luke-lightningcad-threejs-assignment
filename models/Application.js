@@ -197,4 +197,20 @@ export default class Application {
   heightChanged(newValue) {
     this._heightChangedCallback && this._heightChangedCallback(newValue)
   }
+
+  setGableRoofChangedCallback(callback) {
+    this._gableRoofChangedCallback = callback
+  }
+
+  gableRoofChanged(newValue) {
+    this._gableRoofChangedCallback && this._gableRoofChangedCallback(newValue)
+  }
+
+  setWallWithDoorChangedCallback(callback) {
+    this._wallWithDoorChangedCallback = callback
+  }
+
+  wallWithDoorChanged(newValue) {
+    this._wallWithDoorChangedCallback && this._wallWithDoorChangedCallback(newValue)
+  }
 }
